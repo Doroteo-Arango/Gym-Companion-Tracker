@@ -1,5 +1,4 @@
 # Gym Guide & Tracker using Flask
-## Video Demo:  <https://youtu.be/NywnKjvHv8w>
 ## Introduction:
 In the age of heart disease, chronic illnessses, & lack of exercise, staying active is essential for the prolonging of human life. In this Flask web-application, fitness enthusiasts are given a tool to track their progress, learn about muscle hypertrophy, and calculate their Body Mass Index (BMI). This web-application focuses on one of the larger niches of the exercise community, those who train for strength, & hypertrophy. This application is very user-friendly whether the user is a novice, or adept-lifter. By providing users with an easy-to-use fitness companion, this web-application aims to be an indispensible companion to exercise training.
 ## Features:
