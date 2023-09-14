@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}Progress{% endblock %}
+
+<!-- Add fitness calculator to see how well you compare to the average person -->
+{% block content %}
+<!-- Notes -->
+<h1 align="center" style="margin: auto">Track your progress!</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true" style="color: #FFFFFF">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control" placeholder="Type here..." style="text-align: center;"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+{% endblock %}

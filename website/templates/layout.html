@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Metadata -->
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, intial-scale=1" />
+        
+        <!-- Import Bootstrap -->
+        <link
+          rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          crossorigin="anonymous"
+        />
+        <link 
+          rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        />
+        <script 
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+        </script>
+        <script 
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+        </script>
+
+        <!-- style.css file -->
+        <link
+          rel="stylesheet"
+          href="../static/style.css"
+        />
+
+        <!-- For layout of sign-up page -->
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+
+        <!-- BMI Calculator -->
+        <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet'>
+
+
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav 
+          class="navbar navbar-expand-lg navbar-dark"
+          style="background-color: black"
+        >
+            <!-- Expand nav bar if on mobile device -->
+            <button 
+             class="navbar-toggler" 
+             type="button" 
+             data-toggle="collapse" 
+             data-target="#navbar"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navigation Bar -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <!-- Title on navbar -->
+                <!--<a class="navbar-brand" href="/">MyGains</a>-->
+                
+                <!-- Navbar content -->
+                <div class="navbar-nav">
+                    <!-- Create some if statements to only show certain nav bar links to users who are logged in -->
+                    {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+                    <a class="nav-item nav-link" id="workout" href="/workout">Workout</a>
+                    <a class="nav-item nav-link" id="diet" href="/diet">Diet</a>
+                    <a class="nav-item nav-link" id="log" href="/log">Progress</a>
+                    <a class="nav-item nav-link" id="challenge" href="/challenge">Challenges</a>
+                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    
+                    {% else %}
+                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                    <a class="nav-item nav-link" id="signup" href="/sign-up">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Allow for error/success messages (from auth.py) to be displayed -->
+        <!-- The following code also allows for flash messages to be displayed anywhere in our app -->
+        <!-- This defines a variable called messages that uses a built-in Flask function to -->
+        <!-- loop through all true flash messages & display them on screen -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- If messages exists -->
+        {% if messages %}
+            {% for category, message in messages %}
+
+            {% if category == "error" %}
+            <!-- Write some html to display message -->
+            <!-- The following is for messages with error category(hence, alert-danger below) -->
+            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                <!--  Access messages variable --> 
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <!-- Add a special button '&times;' to dismiss alert -->
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            {% else %}
+            <!-- Display messages of success category (alert-success) -->
+            <div class="alert alert-success alter-dismissable fade show" role="alert">
+                <!--  Access messages variable --> 
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <!-- Add a special button '&times;' to dismiss alert -->
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Put content on screen -->
+        <!-- A container causes content to "float" off the border of the screen -->
+        <div class ="container-fluid">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <!-- To load in JS -->
+        <script
+         type="text/javascript"
+         src="{{ url_for("static", filename="script.js") }}"
+        ></script>
+
+        <!-- Import JS animations from Bootstrap-->
+        <script
+         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+         crossorigin="anonymous"
+        ></script>
+        <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+         crossorigin="anonymous"
+        ></script>
+        <script
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+         crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

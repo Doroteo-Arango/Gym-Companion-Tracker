@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Diet{% endblock %}
+
+{% block content %}
+<!-- BMI Calcalator -->
+<h1>BMI CALCULATOR</h1>
+<div id="scale_main">
+  <div id="scale_display">
+        <h2 id="range" class="neutral">Enter Measurements</h2>
+        <h3 id="bmi" >--.--</h3>
+        <div id="needle">
+        </div>
+        <div id="needle_bottom">
+        </div>
+      </div>
+  
+    <div class="measurement" id="height">
+        <h4>Height</h4>
+        
+        <input class="input" type="text" id="height_input" name="height"            required></input>
+      <span class="unit">Inches</span>
+   </div>
+   <div class="measurement" id="weight">
+        <h4>Weight</h4>
+        <input class="input" type="text" id="weight_input" name="weight" required></input>
+        <span class="unit">Pounds</span>
+   </div>
+ 
+      <div>
+        <button id="calculate" onclick="calculate(document.getElementById('height_input').value, document.getElementById('weight_input').value)">CALCULATE</button>
+        <button id="clear" onclick="clear_calculator()">CLEAR</button>
+  </div>
+  
+ </div>
+<br>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container-fluid">
+    <hh class="display-4" style="font-size: 36px; text-align: center;">
+      You must obey the laws of thermodynamics!
+    </hh>
+    <br><br>
+    <p class="lead">
+      Calories-in, calories-out (CICO) is a fundamental principle in weight management 
+      that focuses on the balance between energy intake and energy expenditure.
+      <br><br>
+      The concept is based on the idea that to maintain, gain, or lose weight, the number of calories 
+      consumed through food and beverages must align with the number of calories burned through physical 
+      activity and metabolism. When individuals consume more calories than they burn, 
+      the excess energy is stored as body fat, leading to weight gain. 
+      <br><br>
+      Conversely, if individuals consume fewer calories than they expend, 
+      the body utilizes stored fat as an energy source, resulting in weight loss. 
+      While CICO provides a foundation for weight management, it is important to consider the 
+      quality of calories consumed and the overall nutritional balance of one's diet for 
+      optimal health and well-being.
+      <br><br>
+      A good rule of thumb is the following: <br>
+      If you eat more calories than you burn, you will put on weight. <br>
+      If you eat more calories than you burn, and eat sufficient protein, and train, you will put on muscle. <br>
+      If you eat less calories than you burn, you will lose weight. <br>
+      If you eat less calories than you burn, and eat sufficient protein, and train, you will lose fat while maintaining muscle. <br>
+      <br><br>
+      The recommended protein intake is 0.6 to 1.1g of protein per pound of bodyweight daily.
+    </p>
+  </div>
+</div>
+{% endblock %}
